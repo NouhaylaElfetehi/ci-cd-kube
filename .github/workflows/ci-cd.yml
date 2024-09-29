@@ -49,16 +49,17 @@ jobs:
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
 
-    - name: Send Google Chat notification on success
-      if: success() 
-      run: |
-        curl -X POST -H "Content-Type: application/json" \
-        -d '{"text": "Pipeline succeeded! Deployed version: $GITHUB_SHA"}' \
-        ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
-
-    - name: Send Google Chat notification on failure
-      if: failure()
-      run: |
-        curl -X POST -H "Content-Type: application/json" \
-        -d '{"text": "Pipeline failed! Commit: $GITHUB_SHA"}' \
-        ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+        - name: Send Google Chat notification on success
+        if: success()
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{"text": "Pipeline succeeded! Deployed version: '"${GITHUB_SHA}"'"}' \
+          ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+      
+          - name: Send Google Chat notification on failure
+        if: failure()
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{"text": "Pipeline failed! Commit: '"${GITHUB_SHA}"'"}' \
+          ${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}
+      
