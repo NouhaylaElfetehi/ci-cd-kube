@@ -15,3 +15,4 @@ EXPOSE 8080
 
 # Commande pour démarrer l'application
 CMD ["python", "app.py"]
+ 
