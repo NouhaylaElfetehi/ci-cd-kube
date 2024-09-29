@@ -39,7 +39,7 @@ jobs:
         mkdir -p ~/.kube
         echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
         export KUBECONFIG=$HOME/.kube/config
-
+        
     - name: Install kubectl
       run: |
         sudo apt-get update
