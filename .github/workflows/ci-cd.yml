@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./Dockerfile
+        file: ./Dockerfile chang
         push: true
         tags: ghcr.io/nouhaylafth/flask-app:latest
 
